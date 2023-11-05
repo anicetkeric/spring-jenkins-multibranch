@@ -38,9 +38,9 @@ pipeline {
 
         stage('Code quality - sonar') {
             steps {
-                sh ""
+                sh """
                 echo "Running sonar Analysis"
-                ""
+                """
 			//	withMaven(maven: 'MAVEN_ENV') {
             //      sh "mvn sonar:sonar -Dsonar.projectKey=${SONAR_PROJECT} -Dsonar.projectName=${SONAR_PROJECT} -Dsonar.host.url=${SONAR_URL} -Dsonar.analysis.trigrame=${TRIGRAMME} -Dsonar.analysis.version=${VERSION} -Dsonar.analysis.itbweb=TRUE -Dsonar.login=${SONAR_LOGIN}"
 
@@ -50,9 +50,9 @@ pipeline {
 
         stage('OWASP Dependency-Check Vulnerabilities') {
             steps {
-				sh ""
+				sh """
                 echo "OWASP Dependency-Check Vulnerabilities"
-                ""
+                """
             }
         }
  }
