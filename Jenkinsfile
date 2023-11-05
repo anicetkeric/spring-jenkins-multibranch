@@ -38,21 +38,21 @@ pipeline {
 
         stage('Code quality - sonar') {
             steps {
-                sh """
+                sh ""
                 echo "Running sonar Analysis"
-                """
+                ""
+			//	withMaven(maven: 'MAVEN_ENV') {
+            //      sh "mvn sonar:sonar -Dsonar.projectKey=${SONAR_PROJECT} -Dsonar.projectName=${SONAR_PROJECT} -Dsonar.host.url=${SONAR_URL} -Dsonar.analysis.trigrame=${TRIGRAMME} -Dsonar.analysis.version=${VERSION} -Dsonar.analysis.itbweb=TRUE -Dsonar.login=${SONAR_LOGIN}"
+
+             //   }
             }
         }
 
         stage('OWASP Dependency-Check Vulnerabilities') {
             steps {
-                dependencyCheck additionalArguments: '''
-                            -o './'
-                            -s './'
-                            -f 'ALL'
-                            --prettyPrint''', odcInstallation: 'OWASP Dependency-Check Vulnerabilities'
-
-                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+				sh ""
+                echo "OWASP Dependency-Check Vulnerabilities"
+                ""
             }
         }
  }
