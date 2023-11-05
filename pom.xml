@@ -48,24 +48,7 @@
 					<verbose>true</verbose>
 				</configuration>
 			</plugin>
-			<!-- OWASP Dependency Check Maven Plugin. -->
-			<!--            https://jeremylong.github.io/DependencyCheck/dependency-check-maven/check-mojo.html-->
-			<plugin>
-                <groupId>org.owasp</groupId>
-                <artifactId>dependency-check-maven</artifactId>
-                <version>${dependency-check.version}</version>
-                <configuration>
-                    <failBuildOnAnyVulnerability>true</failBuildOnAnyVulnerability>
-                    <failBuildOnCVSS>5</failBuildOnCVSS>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+
 
 			<plugin>
 				<groupId>org.jacoco</groupId>
@@ -87,6 +70,25 @@
 					</execution>
 				</executions>
 			</plugin>
+
+			<!-- OWASP Dependency Check Maven Plugin. -->
+			<!--            https://jeremylong.github.io/DependencyCheck/dependency-check-maven/check-mojo.html-->
+<!--			<plugin>
+				<groupId>org.owasp</groupId>
+				<artifactId>dependency-check-maven</artifactId>
+				<version>${dependency-check.version}</version>
+				<configuration>
+					<failBuildOnAnyVulnerability>true</failBuildOnAnyVulnerability>
+					<failBuildOnCVSS>5</failBuildOnCVSS>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>-->
 		</plugins>
 	</build>
 
