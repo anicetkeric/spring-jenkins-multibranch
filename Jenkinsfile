@@ -2,14 +2,31 @@ pipeline {
   agent any
 
   environment {
-    MAVEN_ARGS=" -B -e -U clean org.jacoco:jacoco-maven-plugin:prepare-agent deploy"
+    MAVEN_ARGS=" -B -e -U"
   }
 
   stages {
+
         stage('Build') {
+            steps {
+                withMaven(maven: 'MAVEN_ENV') {
+                    sh "mvn clean install -DskipTests=true -Dmaven.javadoc.skip=true -Dcheckstyle.skip=true ${MAVEN_ARGS}"
+                }
+            }
+        }
+
+        stage('Unit tests') {
+            steps {
+                withMaven(maven: 'MAVEN_ENV') {
+                    sh "mvn clean test-compile surefire:test ${MAVEN_ARGS}"
+                }
+            }
+        }
+
+        stage('Integration tests') {
            steps {
                 withMaven(maven: 'MAVEN_ENV') {
-                    sh "mvn ${MAVEN_ARGS}"
+                    sh "mvn clean verify -Dskip.unit.tests=true ${MAVEN_ARGS}"
                 }
            }
           post {
@@ -18,6 +35,7 @@ pipeline {
                     }
               }
         }
+
         stage('Code quality - sonar') {
             steps {
                 sh """
