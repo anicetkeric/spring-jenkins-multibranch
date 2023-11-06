@@ -17,6 +17,13 @@ pipeline {
     MAVEN_ARGS=" -B -e -U"
   }
 
+  options {
+    timeout(time: 20, unit: 'MINUTES')
+    buildDiscarder(logRotator(numToKeepStr: '20'))
+    disableConcurrentBuilds()
+    timestamps()
+  }	
+
   stages {
 
         stage('Build') {
